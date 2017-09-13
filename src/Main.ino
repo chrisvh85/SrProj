@@ -13,41 +13,51 @@ Lights light = Lights(NEOPIXELPIN, NUMPIXELS);
 //------breadboard buttons (delete later)------//
 const int leftButtonPin = 4;
 const int rightButtonPin = 2;
-const int leftLedPin = 13;
+//const int leftLedPin = 13;
 const int rightLedPin = 12;
 int leftButtonState = 0;
 int rightButtonState = 0;
 //---------------------------------------------*/
 
-BLEService ledService("19B10010-E8F2-537E-4F6C-D104768A1214");
-BLECharCharacteristic ledCharacteristic("19B10011-E8F2-537E-4F6C-D104768A1214", BLERead | BLEWrite);
-BLECharCharacteristic buttonCharacteristic("19B10012-E8F2-537E-4F6C-D104768A1214", BLERead | BLENotify);
+const int ledPin = 13;
+const int buttonPin = 4;
+
+BLEService ledService("19B10010-E8F2-537E-4F6C-D104768A1215");
+BLECharCharacteristic ledCharacteristic("19B10011-E8F2-537E-4F6C-D104768A1215", BLERead | BLEWrite);
+BLECharCharacteristic buttonCharacteristic("19B10012-E8F2-537E-4F6C-D104768A1215", BLERead | BLENotify);
 
 void setup() {
-  //while (!Serial) { ;} // wait for serial monitor to start
+  while (!Serial) { ;} // wait for serial monitor to start
   Serial.begin(9600);
   CurieIMU.begin();
   CurieIMU.setAccelerometerRange(2);
   pinMode(LIGHT_PIN, INPUT);
   light.begin();
+
+  pinMode(ledPin, OUTPUT);
+  pinMode(buttonPin, INPUT);
+
   
   BLE.begin();
   BLE.setLocalName("BtnLED");
   BLE.setAdvertisedService(ledService);
   ledService.addCharacteristic(ledCharacteristic);
   ledService.addCharacteristic(buttonCharacteristic);
+  BLE.addService(ledService);
   ledCharacteristic.setValue(0);
   buttonCharacteristic.setValue(0);
   BLE.advertise();
   Serial.println("Bluetooth device active, waiting for connections...");
   
   //------breadboard buttons (delete later)----//
-  pinMode(leftLedPin, OUTPUT);
+  //pinMode(leftLedPin, OUTPUT);
   pinMode(leftButtonPin, INPUT);
   pinMode(rightLedPin, OUTPUT);
   pinMode(rightButtonPin, INPUT);
   //-------------------------------------------//
-  
+
+
+
   
 }
 
@@ -59,26 +69,42 @@ void loop() {
 
 
   //------breadboard buttons (delete later) ---//
-  leftButtonState = digitalRead(leftButtonPin);
+  //  leftButtonState = digitalRead(leftButtonPin);
   rightButtonState = digitalRead(rightButtonPin);
   if (leftButtonState == HIGH) {
-    digitalWrite(leftLedPin, HIGH);
+    //    digitalWrite(leftLedPin, HIGH);
     digitalWrite(rightLedPin, LOW);
     light.left();
   } else if (rightButtonState == HIGH) {
     digitalWrite(rightLedPin, HIGH);
-    digitalWrite(leftLedPin, LOW);
+    //digitalWrite(leftLedPin, LOW);
     light.right();
   } else {
     digitalWrite(rightLedPin, LOW);
-    digitalWrite(leftLedPin, LOW);
+    //digitalWrite(leftLedPin, LOW);
   }
   //-------------------------------------------//
 
   BLE.poll();
-  if (ledCharacteristic.written()) {
+
+  char buttonValue = digitalRead(buttonPin);
+  boolean buttonChanged = (buttonCharacteristic.value() != buttonValue);
+
+
+  if(buttonChanged){
+    ledCharacteristic.setValue(buttonValue);
+    buttonCharacteristic.setValue(buttonValue);
+  }
+  
+  if (ledCharacteristic.written() || buttonChanged) {
+    Serial.println("ldch written");
     if (ledCharacteristic.value()) {
-      light.left();
+      Serial.println("button");
+    //light.left();
+    digitalWrite(ledPin, HIGH);
+    } else {
+      Serial.println("asd");
+      digitalWrite(ledPin, LOW);
     }
   }
 }

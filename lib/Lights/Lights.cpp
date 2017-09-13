@@ -21,12 +21,12 @@ void Lights::begin()
 
 void Lights::setDaylightIntensity(int _val)
 {
-  _val = pow(_val, -2) * 300000;
+  _val = pow(_val, -2) * 1000000;
   daylight_multiplier = _val;
-  Serial.print(daylight_multiplier);
-  Serial.print("\t");
-  Serial.print(accel_max);
-  Serial.println();
+  //Serial.print(daylight_multiplier);
+  //Serial.print("\t");
+  //Serial.print(accel_max);
+  //Serial.println();
 }
 
 void Lights::activateAll(float _val)
