@@ -4,6 +4,8 @@
  */
 
 #include <CurieBLE.h>
+#include <CurieIMU.h>
+
 
 const int ledPin = 13; // set ledPin to on-board LED
 const int buttonPin = 4; // set buttonPin to digital pin 4
@@ -43,6 +45,16 @@ void setup() {
   BLE.advertise();
 
   Serial.println("Bluetooth device active, waiting for connections...");
+
+  CurieIMU.begin();
+  CurieIMU.attachInterrupt(eventCallback);
+  /* Enable Shock Detection */
+  CurieIMU.setDetectionThreshold(CURIE_IMU_SHOCK, 1500); // 1.5g = 1500 mg
+  CurieIMU.setDetectionDuration(CURIE_IMU_SHOCK, 50);   // 50ms
+  CurieIMU.interrupts(CURIE_IMU_SHOCK);
+
+  Serial.println("IMU initialisation complete, waiting for events...");
+
 }
 
 void loop() {
@@ -61,10 +73,16 @@ void loop() {
     buttonCharacteristic.setValue(buttonValue);
   }
 
-  if (ledCharacteristic.written() || buttonChanged) {
+
+
+  if (ledCharacteristic.written()) {
     // update LED, either central has written to characteristic or button state has changed
-    if (ledCharacteristic.value()) {
-      Serial.println("LED on");
+    if (ledCharacteristic.value()==1) {
+      Serial.println("LEFT on");
+      digitalWrite(ledPin, HIGH);
+    }
+    else if (ledCharacteristic.value()==2) {
+      Serial.println("RIGHT on");
       digitalWrite(ledPin, HIGH);
     } else {
       Serial.println("LED off");
@@ -72,6 +90,24 @@ void loop() {
     }
   }
 }
+static void eventCallback(void)
+{
+  if (CurieIMU.getInterruptStatus(CURIE_IMU_SHOCK)) {
+    if (CurieIMU.shockDetected(X_AXIS, POSITIVE))
+      Serial.println("Negative shock detected on X-axis");
+    if (CurieIMU.shockDetected(X_AXIS, NEGATIVE))
+      Serial.println("Positive shock detected on X-axis");
+    if (CurieIMU.shockDetected(Y_AXIS, POSITIVE))
+      Serial.println("Negative shock detected on Y-axis");
+    if (CurieIMU.shockDetected(Y_AXIS, NEGATIVE))
+      Serial.println("Positive shock detected on Y-axis");
+    if (CurieIMU.shockDetected(Z_AXIS, POSITIVE))
+      Serial.println("Negative shock detected on Z-axis");
+    if (CurieIMU.shockDetected(Z_AXIS, NEGATIVE))
+      Serial.println("Positive shock detected on Z-axis");
+  }
+}
+
 
 /*
   Copyright (c) 2016 Intel Corporation. All rights reserved.

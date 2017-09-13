@@ -4,6 +4,7 @@ class ViewController: UIViewController {
     var simpleBluetoothIO: SimpleBluetoothIO!
 
     @IBOutlet weak var ledToggleButton: UIButton!
+    @IBOutlet weak var rightToggleButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +17,14 @@ class ViewController: UIViewController {
     }
 
     @IBAction func ledToggleButtonUp(_ sender: UIButton) {
+        simpleBluetoothIO.writeValue(value: 0)
+    }
+    @IBAction func rightToggleButtonDown(_ sender: UIButton) {
+        simpleBluetoothIO.writeValue(value: 2)
+        
+    }
+    
+    @IBAction func leftToggleButtonUp(_ sender: UIButton) {
         simpleBluetoothIO.writeValue(value: 0)
     }
 
