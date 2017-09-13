@@ -21,7 +21,7 @@ void Lights::begin()
 
 void Lights::setDaylightIntensity(int _val)
 {
-  _val = pow(_val, -2) * 100000;
+  _val = pow(_val, -2) * 300000;
   daylight_multiplier = _val;
   Serial.print(daylight_multiplier);
   Serial.print("\t");
@@ -31,7 +31,14 @@ void Lights::setDaylightIntensity(int _val)
 
 void Lights::activateAll(float _val)
 {
-  _val *= daylight_multiplier;
+  if (_val != 0 && daylight_multiplier == 0) {
+    daylight_multiplier = 1;
+  }
+  else if (_val == 0 && daylight_multiplier != 0){
+    _val = 1;
+  }
+  _val *=daylight_multiplier;
+
   for(int i=0;i<NUMPIXELS;i++)
   {
     pixels.setPixelColor(i, pixels.Color(_val,0,0));
@@ -48,7 +55,7 @@ void Lights::setAccelIntensity(float _val)
   }
   else if ( accel_max>=0)
   {
-    accel_max = 1 + .5*log10(accel_max);
+    accel_max = .5*log10(accel_max);
     activateAll(accel_max);
   }
 }
@@ -93,11 +100,11 @@ void Lights::right()
   pixels.setPixelColor(1, pixels.Color(255,155,0));
   delay(delayval);
   pixels.show();
-  pixels.setPixelColor(5, pixels.Color(255,155,0));
-  pixels.setPixelColor(6, pixels.Color(255,155,0));
   pixels.setPixelColor(7, pixels.Color(255,155,0));
   pixels.setPixelColor(8, pixels.Color(255,155,0));
   pixels.setPixelColor(9, pixels.Color(255,155,0));
+  pixels.setPixelColor(17, pixels.Color(255,155,0));
+  pixels.setPixelColor(18, pixels.Color(255,155,0));
   pixels.show();
   delay(delayval * 5);
   off();
