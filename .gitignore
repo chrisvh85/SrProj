@@ -5,3 +5,5 @@
 .travis.yml
 platformio.ini
 /lib/readme.txt
+arduino101_sketch.debug.elf
+build/

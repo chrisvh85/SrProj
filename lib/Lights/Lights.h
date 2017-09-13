@@ -3,27 +3,28 @@
 */
 #ifndef Lights_h
 #define Lights_h
-#define PIN            6
-#define NUMPIXELS      19
-#include "Arduino.h"
-#include "../Adafruit_NeoPixel-master/Adafruit_NeoPixel.h"
+#include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 
 class Lights
 {
   public:
-    Lights();
+    Lights(int _NEOPIXELPIN, int _NUMPIXELS);
     void left();
-    void glow();
+    void right();
     void off();
     void begin();
-    void setAccelIntensity(int _val);
+    void setAccelIntensity(float _val);
     void setDaylightIntensity(int _val);
 
   private:
-    Adafruit_NeoPixel pixels;
+    int NEOPIXELPIN;
+    int NUMPIXELS;
     int delayval;
     int daylight_multiplier;
     float accel_max;
+    Adafruit_NeoPixel pixels;
+    void activateAll(float _val);
 };
 
 #endif
