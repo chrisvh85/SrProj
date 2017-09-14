@@ -93,6 +93,8 @@ void loop() {
 static void eventCallback(void)
 {
   if (CurieIMU.getInterruptStatus(CURIE_IMU_SHOCK)) {
+      buttonCharacteristic.setValue(1);
+
     if (CurieIMU.shockDetected(X_AXIS, POSITIVE))
       Serial.println("Negative shock detected on X-axis");
     if (CurieIMU.shockDetected(X_AXIS, NEGATIVE))
