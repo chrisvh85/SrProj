@@ -2,7 +2,6 @@ import UIKit
 
 class ViewController: UIViewController {
     var simpleBluetoothIO: SimpleBluetoothIO!
-
     @IBOutlet weak var ledToggleButton: UIButton!
     @IBOutlet weak var rightToggleButton: UIButton!
 
@@ -27,7 +26,9 @@ class ViewController: UIViewController {
     @IBAction func leftToggleButtonUp(_ sender: UIButton) {
         simpleBluetoothIO.writeValue(value: 0)
     }
-
+    func changeBackgroundColor(color:UIColor){
+        view.backgroundColor = color
+    }
     func createAlert(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: {(action) in
@@ -35,10 +36,12 @@ class ViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: {(action) in
             alert.dismiss(animated: true, completion: nil)
+            self.changeBackgroundColor(color: UIColor.black)
         }))
         self.present(alert, animated: true, completion: nil)
     }
 }
+
 
 extension ViewController: SimpleBluetoothIODelegate {
     func simpleBluetoothIO(simpleBluetoothIO: SimpleBluetoothIO, didReceiveValue value: Int8) {
