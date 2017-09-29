@@ -1,30 +1,37 @@
+//
+//  ViewController.swift
+//  SmartBike
+//
+//  Created by Shubaan Taheri on 9/22/17.
+//  Copyright © 2017 Shubaan Taheri. All rights reserved.
+//
+
 import UIKit
 
 class ViewController: UIViewController {
-    var simpleBluetoothIO: SimpleBluetoothIO!
-    @IBOutlet weak var ledToggleButton: UIButton!
+    var bluetoothIO: BluetoothIO!
+    @IBOutlet weak var leftToggleButton: UIButton!
     @IBOutlet weak var rightToggleButton: UIButton!
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        simpleBluetoothIO = SimpleBluetoothIO(serviceUUID: "19B10010-E8F2-537E-4F6C-D104768A1214", delegate: self)
+        bluetoothIO = BluetoothIO(serviceUUID: "19B10010-E8F2-537E-4F6C-D104768A1214", delegate: self)
     }
 
-    @IBAction func ledToggleButtonDown(_ sender: UIButton) {
-        simpleBluetoothIO.writeValue(value: 1)
-    }
 
-    @IBAction func ledToggleButtonUp(_ sender: UIButton) {
-        simpleBluetoothIO.writeValue(value: 0)
-    }
-    @IBAction func rightToggleButtonDown(_ sender: UIButton) {
-        simpleBluetoothIO.writeValue(value: 2)
-        
+    @IBAction func leftToggleButtonDown(_ sender: UIButton) {
+        bluetoothIO.writeValue(value: 1)
     }
     
     @IBAction func leftToggleButtonUp(_ sender: UIButton) {
-        simpleBluetoothIO.writeValue(value: 0)
+        bluetoothIO.writeValue(value: 0)
+    }
+    @IBAction func rightToggleButtonDown(_ sender: UIButton) {
+        bluetoothIO.writeValue(value: 2)
+        
+    }
+    
+    @IBAction func rightToggleButtonUp(_ sender: UIButton) {
+        bluetoothIO.writeValue(value: 0)
     }
     func changeBackgroundColor(color:UIColor){
         view.backgroundColor = color
@@ -40,11 +47,12 @@ class ViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+
+
 }
 
-
-extension ViewController: SimpleBluetoothIODelegate {
-    func simpleBluetoothIO(simpleBluetoothIO: SimpleBluetoothIO, didReceiveValue value: Int8) {
+extension ViewController: BluetoothIODelegate {
+    func bluetoothIO(bluetoothIO: BluetoothIO, didReceiveValue value: Int8) {
         if value > 0 {
             view.backgroundColor = UIColor.red
             createAlert(title: "Shock Detected", message: "Send for Help?")
@@ -53,3 +61,5 @@ extension ViewController: SimpleBluetoothIODelegate {
         }
     }
 }
+
+
