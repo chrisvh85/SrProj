@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import MessageUI
 
-class ViewController: UIViewController {
+
+class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+
+    
     var bluetoothIO: BluetoothIO!
     @IBOutlet weak var leftToggleButton: UIButton!
     @IBOutlet weak var rightToggleButton: UIButton!
@@ -33,13 +37,29 @@ class ViewController: UIViewController {
     @IBAction func rightToggleButtonUp(_ sender: UIButton) {
         bluetoothIO.writeValue(value: 0)
     }
+    
+    
+
+    
     func changeBackgroundColor(color:UIColor){
         view.backgroundColor = color
     }
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func createAlert(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: {(action) in
             alert.dismiss(animated: true, completion: nil)
+            if (MFMessageComposeViewController.canSendText()) {
+                let controller = MFMessageComposeViewController()
+                controller.body = "Message Body"
+                controller.recipients = ["9257881266"]
+                controller.messageComposeDelegate = self
+                self.present(controller, animated: true, completion: nil)
+            }
+
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: {(action) in
             alert.dismiss(animated: true, completion: nil)
