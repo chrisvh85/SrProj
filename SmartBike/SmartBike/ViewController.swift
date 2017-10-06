@@ -7,18 +7,30 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 import MessageUI
 
 
-class ViewController: UIViewController, MFMessageComposeViewControllerDelegate {
+class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate {
 
-    
+    let locationManager = CLLocationManager()
     var bluetoothIO: BluetoothIO!
     @IBOutlet weak var leftToggleButton: UIButton!
     @IBOutlet weak var rightToggleButton: UIButton!
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.latitude)//(<#T##latitudeDelta: CLLocationDegrees##CLLocationDegrees#>, <#T##longitudeDelta: CLLocationDegrees##CLLocationDegrees#>)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bluetoothIO = BluetoothIO(serviceUUID: "19B10010-E8F2-537E-4F6C-D104768A1214", delegate: self)
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
     }
 
 
