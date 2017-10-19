@@ -18,22 +18,39 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     var bluetoothIO: BluetoothIO!
     @IBOutlet weak var leftToggleButton: UIButton!
     @IBOutlet weak var rightToggleButton: UIButton!
+    
+    @IBOutlet weak var map: MKMapView!
+    
+    @IBOutlet weak var speedLabel: UILabel!
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         let span:MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
-        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.latitude)//(<#T##latitudeDelta: CLLocationDegrees##CLLocationDegrees#>, <#T##longitudeDelta: CLLocationDegrees##CLLocationDegrees#>)
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        map.setRegion(region, animated: true)
+        self.map.showsUserLocation = true
+        speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6);
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bluetoothIO = BluetoothIO(serviceUUID: "19B10010-E8F2-537E-4F6C-D104768A1214", delegate: self)
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+       speedLabel.text = "0"
+        //locationManager.stopUpdatingLocation()
+        //speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
     }
 
+    
 
+    func updateSpeed(){
+        speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
+
+    }
     @IBAction func leftToggleButtonDown(_ sender: UIButton) {
         bluetoothIO.writeValue(value: 1)
     }
