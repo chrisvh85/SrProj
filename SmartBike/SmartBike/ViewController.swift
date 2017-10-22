@@ -40,9 +40,9 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-       speedLabel.text = "0"
-        //locationManager.stopUpdatingLocation()
-        //speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
+        speedLabel.text = "0"
+        
+        
     }
 
     
@@ -78,13 +78,17 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     }
     
     func createAlert(title:String, message:String){
+        let defaults = UserDefaults()
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: {(action) in
             alert.dismiss(animated: true, completion: nil)
             if (MFMessageComposeViewController.canSendText()) {
                 let controller = MFMessageComposeViewController()
-                controller.body = "Message Body"
-                controller.recipients = ["9257881266"]
+                controller.recipients = [defaults.string(forKey: "contact")!]
+                let lat = String(describing: self.locationManager.location!.coordinate.latitude)
+                let long = String(describing: self.locationManager.location!.coordinate.longitude)
+                var messageBody = "I just crashed my bike here \n http://maps.apple.com/?ll=" + lat + "," + long
+                controller.body = messageBody
                 controller.messageComposeDelegate = self
                 self.present(controller, animated: true, completion: nil)
             }

@@ -188,10 +188,10 @@
             </objects>
             <point key="canvasLocation" x="-135.19999999999999" y="848.72563718140941"/>
         </scene>
-        <!--View Controller-->
+        <!--MoreViewController-->
         <scene sceneID="qPs-vH-keE">
             <objects>
-                <viewController id="R4n-0K-rSI" sceneMemberID="viewController">
+                <viewController title="MoreViewController" id="R4n-0K-rSI" customClass="MoreViewController" customModule="SmartBike" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YsB-IJ-l9e"/>
                         <viewControllerLayoutGuide type="bottom" id="1Ez-vs-VXF"/>
@@ -212,7 +212,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="tel"/>
+                                <textInputTraits key="textInputTraits"/>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UrF-Fu-YZL">
                                 <rect key="frame" x="16" y="142" width="176" height="29"/>
@@ -226,6 +226,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="zrQ-wg-G6G"/>
+                    <connections>
+                        <outlet property="phoneNumber" destination="vbe-Ka-eFg" id="vPt-0T-nuT"/>
+                        <outlet property="unit" destination="UrF-Fu-YZL" id="TVg-Vy-KA8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zp-Qs-vIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
