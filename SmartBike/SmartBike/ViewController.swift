@@ -53,6 +53,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     }
     @IBAction func leftToggleButtonDown(_ sender: UIButton) {
         bluetoothIO.writeValue(value: 1)
+        createAlert(title: "Shock", message: "Help?")
     }
     
     @IBAction func leftToggleButtonUp(_ sender: UIButton) {
@@ -87,7 +88,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
                 controller.recipients = [defaults.string(forKey: "contact")!]
                 let lat = String(describing: self.locationManager.location!.coordinate.latitude)
                 let long = String(describing: self.locationManager.location!.coordinate.longitude)
-                var messageBody = "I just crashed my bike here \n http://maps.apple.com/?ll=" + lat + "," + long
+                var messageBody = "I just crashed my bike here \n http://maps.apple.com/?daddr=" + lat + "," + long
                 controller.body = messageBody
                 controller.messageComposeDelegate = self
                 self.present(controller, animated: true, completion: nil)
