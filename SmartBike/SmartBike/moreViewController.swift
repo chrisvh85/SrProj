@@ -14,10 +14,10 @@ class MoreViewController: UIViewController, UITextFieldDelegate{
         @IBOutlet var phoneNumber: UITextField!
     
     @IBOutlet var unit: UISegmentedControl!
-    
+    let defaults = UserDefaults()
     override func viewDidLoad() {
         phoneNumber.delegate = self
-        let defaults = UserDefaults()
+        //let defaults = UserDefaults()
         phoneNumber.text = defaults.string(forKey: "contact")
         
     }
@@ -27,7 +27,7 @@ class MoreViewController: UIViewController, UITextFieldDelegate{
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        let defaults = UserDefaults()
+       // let defaults = UserDefaults()
         defaults.set(phoneNumber.text, forKey: "contact")
     }
 }

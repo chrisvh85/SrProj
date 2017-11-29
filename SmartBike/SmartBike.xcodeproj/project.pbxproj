@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01334F891F9AACAB000EE32A /* moreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01334F881F9AACAB000EE32A /* moreViewController.swift */; };
+		013819791FCED4E0003CA7EC /* RideSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013819781FCED4E0003CA7EC /* RideSummaryViewController.swift */; };
 		014E677F1F8319B200F44DF3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014E677E1F8319B200F44DF3 /* CoreLocation.framework */; };
 		019BD4151F7E387A006F0487 /* BluetoothIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019BD4141F7E387A006F0487 /* BluetoothIO.swift */; };
 		01DF825D1F75CB980041C16E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF825C1F75CB980041C16E /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		01334F881F9AACAB000EE32A /* moreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = moreViewController.swift; sourceTree = "<group>"; };
+		013819781FCED4E0003CA7EC /* RideSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideSummaryViewController.swift; sourceTree = "<group>"; };
 		014E677E1F8319B200F44DF3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		019BD4141F7E387A006F0487 /* BluetoothIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothIO.swift; sourceTree = "<group>"; };
 		01DF82591F75CB980041C16E /* SmartBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				01DF825C1F75CB980041C16E /* AppDelegate.swift */,
 				01DF825E1F75CB980041C16E /* ViewController.swift */,
 				01DF82601F75CB980041C16E /* Main.storyboard */,
+				013819781FCED4E0003CA7EC /* RideSummaryViewController.swift */,
 				01DF82661F75CB980041C16E /* Assets.xcassets */,
 				01DF82681F75CB980041C16E /* LaunchScreen.storyboard */,
 				01DF826B1F75CB980041C16E /* Info.plist */,
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				019BD4151F7E387A006F0487 /* BluetoothIO.swift in Sources */,
+				013819791FCED4E0003CA7EC /* RideSummaryViewController.swift in Sources */,
 				01DF825F1F75CB980041C16E /* ViewController.swift in Sources */,
 				01DF825D1F75CB980041C16E /* AppDelegate.swift in Sources */,
 				01334F891F9AACAB000EE32A /* moreViewController.swift in Sources */,
