@@ -22,6 +22,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     var lastAltitude: CLLocation!
     var startDate: Date!
     var traveledDistance: Double = 0
+    var topSpeed: Double = 0
     var altitudeGained: Double = 0
     var altitudeLost: Double = 0
     var altitudeChange: Double = 0
@@ -66,6 +67,9 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
             }
             print("Altitude Gained:",  altitudeGained)
             print("Altitude Lost:", altitudeLost)
+            if (locationManager.location!.speed > topSpeed){
+                topSpeed = locationManager.location!.speed
+            }
         }
         lastLocation = locations.last
     }
@@ -94,7 +98,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     }
     @IBAction func leftToggleButtonDown(_ sender: UIButton) {
         bluetoothIO.writeValue(value: 1)
-       createAlert(title: "Shock", message: "Help")
+       createCrashAlert(title: "Shock", message: "Help")
     }
 
     
@@ -106,7 +110,6 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         
     }
     @IBAction func startButton(_ sender: UIButton) {
-        //createAlert(title: "Shock", message: "Help?")
         start.isHidden=true
         stopButton.isHidden=false
         startTracking()
@@ -136,24 +139,29 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     }
     func stopTracking(){
         timer.invalidate()
-        defaults.set(traveledDistance, forKey: "distance")
-        print(traveledDistance)
-        defaults.set(elapsedTime, forKey: "time")
-        print(elapsedTime)
+        
+        defaults.set((traveledDistance*10).rounded()/10, forKey: "distance")
+        defaults.set(timeLabel.text, forKey: "time")
+        defaults.set(((traveledDistance/elapsedTime).rounded()*10)/10, forKey: "avgSpeed")
+        defaults.set(altitudeGained, forKey: "altitude")
+        defaults.set(topSpeed, forKey: "topSpeed")
+
         locationManager.stopUpdatingLocation()
+        
         
     }
     @objc func updateTime() {
         var currentTime = NSDate.timeIntervalSinceReferenceDate
         //var elapsedTime: TimeInterval = currentTime - startTime
         elapsedTime = currentTime - startTime
-        let hours = UInt8(elapsedTime / 60)
-        elapsedTime -= (TimeInterval(hours) * 60)
-        let minutes = UInt8(elapsedTime / 60.0)
-        elapsedTime -= (TimeInterval(minutes) * 60)
-        let seconds = UInt8(elapsedTime)
-        elapsedTime -= TimeInterval(seconds)
-        let fraction = UInt8(elapsedTime * 100)
+        var elapsedTimeCopy = elapsedTime
+        let hours = UInt8(elapsedTimeCopy / 60)
+        elapsedTimeCopy -= (TimeInterval(hours) * 60)
+        let minutes = UInt8(elapsedTimeCopy / 60.0)
+        elapsedTimeCopy -= (TimeInterval(minutes) * 60)
+        let seconds = UInt8(elapsedTimeCopy)
+        elapsedTimeCopy -= TimeInterval(seconds)
+        let fraction = UInt8(elapsedTimeCopy * 100)
         let strHours = String(format: "%02d", hours)
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
@@ -161,14 +169,12 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         timeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
         
     }
-    func createAlert(title:String, message:String){
-        //let defaults = UserDefaults()
+    func createCrashAlert(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: {(action) in
             alert.dismiss(animated: true, completion: nil)
             if (MFMessageComposeViewController.canSendText()) {
                 let controller = MFMessageComposeViewController()
-                //controller.recipients = [defaults.string(forKey: "contact")!]
                 controller.recipients = [self.defaults.string(forKey: "contact")!]
                 let lat = String(describing: self.locationManager.location!.coordinate.latitude)
                 let long = String(describing: self.locationManager.location!.coordinate.longitude)
@@ -184,6 +190,19 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    /*func createSaveRideAlert(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "YES", style: UIAlertActionStyle.default, handler: {(action) in
+            alert.dismiss(animated: true, completion: nil)
+            let vc = RideSummaryViewController()
+            self.present(vc, animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: {(action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }*/
+    
 
 
 }
@@ -192,7 +211,7 @@ extension ViewController: BluetoothIODelegate {
     func bluetoothIO(bluetoothIO: BluetoothIO, didReceiveValue value: Int8) {
         if value > 0 {
             view.backgroundColor = UIColor.red
-            createAlert(title: "Shock Detected", message: "Send for Help?")
+            createCrashAlert(title: "Shock Detected", message: "Send for Help?")
         } else {
             view.backgroundColor = UIColor.black
         }

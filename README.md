@@ -4,3 +4,4 @@ Copyright © 2017 Shubaan Taheri. All rights reserved.
 
 
 Download the source folder, open in Xcode, and run on any iPhone or iPhone simulator.
+To use the turn signal functionality, you must own a SmartBike device.
