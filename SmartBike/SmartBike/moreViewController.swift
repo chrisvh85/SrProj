@@ -15,19 +15,24 @@ class MoreViewController: UIViewController, UITextFieldDelegate{
         switch(sender.selectedSegmentIndex){
         case 0:
             defaults.set("M", forKey: "units")
+            print(defaults.string(forKey: "units")!)
         case 1:
             defaults.set("K", forKey: "units")
+            print(defaults.string(forKey: "units")!)
+
         default:
             break
         }
     }
     
-        @IBOutlet var phoneNumber: UITextField!
-    
+    @IBOutlet var weight: UITextField!
+    @IBOutlet var phoneNumber: UITextField!
     @IBOutlet var unit: UISegmentedControl!
     let defaults = UserDefaults()
     override func viewDidLoad() {
         weak var unit: UISegmentedControl!
+        weight.delegate = self
+        phoneNumber.text = defaults.string(forKey: "weight")
         phoneNumber.delegate = self
         phoneNumber.text = defaults.string(forKey: "contact")
         
@@ -35,10 +40,12 @@ class MoreViewController: UIViewController, UITextFieldDelegate{
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         phoneNumber.resignFirstResponder()
+        weight.resignFirstResponder()
+
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-       // let defaults = UserDefaults()
         defaults.set(phoneNumber.text, forKey: "contact")
+        defaults.set(weight.text, forKey: "weight")
     }
 }

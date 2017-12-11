@@ -30,19 +30,28 @@ class RideSummaryViewController: UIViewController {
     var distance: Double = 0
     
     var calories: String = "Coming Soon"
+    
 
   
     override func viewDidLoad() {
+        let units = defaults.string(forKey: "units")
         let when = DispatchTime.now() + 0.5
         DispatchQueue.main.asyncAfter(deadline: when) {
-            self.distanceLabel.text = self.defaults.string(forKey: "distance")! + " m"
+            
+            if(units == "M"){
+                self.distanceLabel.text = String(format: "%.2f Miles", Double(self.defaults.string(forKey: "distance")!)! * 0.000621371)
+                self.avgSpeedLabel.text = String(format: "%.2f MPH", Double(self.defaults.string(forKey: "avgSpeed")!)! * 2.24)
+                self.topSpeedLabel.text = String(format: "%.2f MPH", Double(self.defaults.string(forKey: "topSpeed")!)! * 2.24)
+            }
+            else{
+                self.distanceLabel.text = String(format: "%.2f KM", Double(self.defaults.string(forKey: "distance")!)! * 0.001)
+                self.avgSpeedLabel.text = String(format: "%.2f KM/H", Double(self.defaults.string(forKey: "avgSpeed")!)! * 3.6)
+                self.topSpeedLabel.text = String(format: "%.2f KM/H", Double(self.defaults.string(forKey: "topSpeed")!)! * 3.6)
+            }
+            
             
             self.timeLabel.text = self.defaults.string(forKey: "time")
-            //self.altitudeLabel.text = self.defaults.string(forKey: "altitude")
-            self.altitudeLabel.text = "0m"
-            
-            self.avgSpeedLabel.text = self.defaults.string(forKey: "avgSpeed")! + "m/s"
-            self.topSpeedLabel.text = self.defaults.string(forKey: "topSpeed")! + "m/s"
+            self.altitudeLabel.text = self.defaults.string(forKey: "altitude")
             self.caloriesLabel.text = self.calories
             self.distanceLabel.isHidden = false
             self.timeLabel.isHidden = false

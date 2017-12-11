@@ -49,7 +49,13 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         //map.setCenter(myLocation, animated: true)
         map.showsUserLocation = true
         
-        speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6);
+        if(defaults.string(forKey: "units")! == "M"){
+            speedLabel.text = String(format: "%.0f mph", locationManager.location!.speed * 2.24)
+            
+        }
+        else{
+            speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
+        }
         if startDate == nil {
             startDate = Date()
         } 
@@ -93,12 +99,16 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     
 
     func updateSpeed(){
-        speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
+        if(defaults.string(forKey: "units")! == "M"){
+            speedLabel.text = String(format: "%.0f mph", locationManager.location!.speed * 2.24)
 
+        }
+        else{
+        speedLabel.text = String(format: "%.0f km/h", locationManager.location!.speed * 3.6)
+        }
     }
     @IBAction func leftToggleButtonDown(_ sender: UIButton) {
         bluetoothIO.writeValue(value: 1)
-       createCrashAlert(title: "Shock", message: "Help")
     }
 
     
@@ -140,7 +150,7 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     func stopTracking(){
         timer.invalidate()
         
-        defaults.set((traveledDistance*10).rounded()/10, forKey: "distance")
+        defaults.set((traveledDistance.rounded()*10)/10, forKey: "distance")
         defaults.set(timeLabel.text, forKey: "time")
         defaults.set(((traveledDistance/elapsedTime).rounded()*10)/10, forKey: "avgSpeed")
         defaults.set(altitudeGained, forKey: "altitude")
@@ -155,19 +165,22 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
         //var elapsedTime: TimeInterval = currentTime - startTime
         elapsedTime = currentTime - startTime
         var elapsedTimeCopy = elapsedTime
-        let hours = UInt8(elapsedTimeCopy / 60)
-        elapsedTimeCopy -= (TimeInterval(hours) * 60)
-        let minutes = UInt8(elapsedTimeCopy / 60.0)
+        //let hours = UInt8(elapsedTimeCopy / 60)
+        //elapsedTimeCopy -= (TimeInterval(hours) * 60)
+        var minutes = UInt8(elapsedTimeCopy / 60.0)
         elapsedTimeCopy -= (TimeInterval(minutes) * 60)
         let seconds = UInt8(elapsedTimeCopy)
         elapsedTimeCopy -= TimeInterval(seconds)
         let fraction = UInt8(elapsedTimeCopy * 100)
+        let hours = minutes % 60
+        minutes = minutes % 60
         let strHours = String(format: "%02d", hours)
         let strMinutes = String(format: "%02d", minutes)
         let strSeconds = String(format: "%02d", seconds)
         let strFraction = String(format: "%02d", fraction)
-        timeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
-        
+        timeLabel.text = "\("00"):\(strMinutes):\(strSeconds):\(strFraction)"
+        //timeLabel.text = "\(strHours):\(strMinutes):\(strSeconds):\(strFraction)"
+
     }
     func createCrashAlert(title:String, message:String){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -210,10 +223,8 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
 extension ViewController: BluetoothIODelegate {
     func bluetoothIO(bluetoothIO: BluetoothIO, didReceiveValue value: Int8) {
         if value > 0 {
-            view.backgroundColor = UIColor.red
             createCrashAlert(title: "Shock Detected", message: "Send for Help?")
         } else {
-            view.backgroundColor = UIColor.black
         }
     }
 }
