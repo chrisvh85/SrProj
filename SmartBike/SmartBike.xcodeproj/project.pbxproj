@@ -19,6 +19,9 @@
 		01DF826A1F75CB980041C16E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF82681F75CB980041C16E /* LaunchScreen.storyboard */; };
 		01DF82751F75CB990041C16E /* SmartBikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF82741F75CB990041C16E /* SmartBikeTests.swift */; };
 		01DF82801F75CB990041C16E /* SmartBikeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF827F1F75CB990041C16E /* SmartBikeUITests.swift */; };
+		388CCC1994A9CD6516CAC1E7 /* Pods_SmartBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130782D2F634D1B749081F23 /* Pods_SmartBike.framework */; };
+		6B405B05E6A23691C2CEE00C /* Pods_SmartBikeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242F31247B74667EF884B94B /* Pods_SmartBikeUITests.framework */; };
+		E78C743855CFF6342CFE25B9 /* Pods_SmartBikeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A521D21F6FACB37056629967 /* Pods_SmartBikeTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,15 @@
 		01DF827B1F75CB990041C16E /* SmartBikeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartBikeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DF827F1F75CB990041C16E /* SmartBikeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartBikeUITests.swift; sourceTree = "<group>"; };
 		01DF82811F75CB990041C16E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		130782D2F634D1B749081F23 /* Pods_SmartBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		171BCC775A3777B946A83CA5 /* Pods-SmartBikeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBikeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBikeUITests/Pods-SmartBikeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		213E320CD691348800EAB75B /* Pods-SmartBikeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBikeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBikeUITests/Pods-SmartBikeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		231AE71C57EE81E3E9564800 /* Pods-SmartBikeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBikeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBikeTests/Pods-SmartBikeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		242F31247B74667EF884B94B /* Pods_SmartBikeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartBikeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FB6B52E9FCA6A5690D81E99 /* Pods-SmartBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBike/Pods-SmartBike.debug.xcconfig"; sourceTree = "<group>"; };
+		A521D21F6FACB37056629967 /* Pods_SmartBikeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartBikeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE15441E56568EDB96C5CC4F /* Pods-SmartBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBike/Pods-SmartBike.release.xcconfig"; sourceTree = "<group>"; };
+		D46DEA871CECE99A89922723 /* Pods-SmartBikeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartBikeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SmartBikeTests/Pods-SmartBikeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				014E677F1F8319B200F44DF3 /* CoreLocation.framework in Frameworks */,
+				388CCC1994A9CD6516CAC1E7 /* Pods_SmartBike.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78C743855CFF6342CFE25B9 /* Pods_SmartBikeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B405B05E6A23691C2CEE00C /* Pods_SmartBikeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				014E677E1F8319B200F44DF3 /* CoreLocation.framework */,
+				130782D2F634D1B749081F23 /* Pods_SmartBike.framework */,
+				A521D21F6FACB37056629967 /* Pods_SmartBikeTests.framework */,
+				242F31247B74667EF884B94B /* Pods_SmartBikeUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -101,6 +119,7 @@
 				01DF827E1F75CB990041C16E /* SmartBikeUITests */,
 				01DF825A1F75CB980041C16E /* Products */,
 				014E677D1F8319B200F44DF3 /* Frameworks */,
+				34E0CAB194708630F0794B6D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +168,19 @@
 			path = SmartBikeUITests;
 			sourceTree = "<group>";
 		};
+		34E0CAB194708630F0794B6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7FB6B52E9FCA6A5690D81E99 /* Pods-SmartBike.debug.xcconfig */,
+				BE15441E56568EDB96C5CC4F /* Pods-SmartBike.release.xcconfig */,
+				231AE71C57EE81E3E9564800 /* Pods-SmartBikeTests.debug.xcconfig */,
+				D46DEA871CECE99A89922723 /* Pods-SmartBikeTests.release.xcconfig */,
+				213E320CD691348800EAB75B /* Pods-SmartBikeUITests.debug.xcconfig */,
+				171BCC775A3777B946A83CA5 /* Pods-SmartBikeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -156,9 +188,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01DF82841F75CB990041C16E /* Build configuration list for PBXNativeTarget "SmartBike" */;
 			buildPhases = (
+				13CBCA72ABF2BD1413B0182D /* [CP] Check Pods Manifest.lock */,
 				01DF82551F75CB980041C16E /* Sources */,
 				01DF82561F75CB980041C16E /* Frameworks */,
 				01DF82571F75CB980041C16E /* Resources */,
+				51D4EB98B1E7274EFF209FC9 /* [CP] Embed Pods Frameworks */,
+				F9624DE30E39DC1D4A9549E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,9 +208,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01DF82871F75CB990041C16E /* Build configuration list for PBXNativeTarget "SmartBikeTests" */;
 			buildPhases = (
+				2FE7809E1AD9CAC9B2545012 /* [CP] Check Pods Manifest.lock */,
 				01DF826C1F75CB990041C16E /* Sources */,
 				01DF826D1F75CB990041C16E /* Frameworks */,
 				01DF826E1F75CB990041C16E /* Resources */,
+				023C3C6F287E843D67B5B34A /* [CP] Embed Pods Frameworks */,
+				AD73585508FA3304820B8721 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -191,9 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01DF828A1F75CB990041C16E /* Build configuration list for PBXNativeTarget "SmartBikeUITests" */;
 			buildPhases = (
+				43F01A86BF295B176726A0D5 /* [CP] Check Pods Manifest.lock */,
 				01DF82771F75CB990041C16E /* Sources */,
 				01DF82781F75CB990041C16E /* Frameworks */,
 				01DF82791F75CB990041C16E /* Resources */,
+				A1C44D078725A6F1A057712B /* [CP] Embed Pods Frameworks */,
+				7951C1DC14A296201C230FEE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -281,6 +322,156 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		023C3C6F287E843D67B5B34A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBikeTests/Pods-SmartBikeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13CBCA72ABF2BD1413B0182D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartBike-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FE7809E1AD9CAC9B2545012 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartBikeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43F01A86BF295B176726A0D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmartBikeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51D4EB98B1E7274EFF209FC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SmartBike/Pods-SmartBike-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DynamicButton/DynamicButton.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicButton.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBike/Pods-SmartBike-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7951C1DC14A296201C230FEE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBikeUITests/Pods-SmartBikeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1C44D078725A6F1A057712B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBikeUITests/Pods-SmartBikeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD73585508FA3304820B8721 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBikeTests/Pods-SmartBikeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9624DE30E39DC1D4A9549E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartBike/Pods-SmartBike-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		01DF82551F75CB980041C16E /* Sources */ = {
@@ -456,6 +647,7 @@
 		};
 		01DF82851F75CB990041C16E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FB6B52E9FCA6A5690D81E99 /* Pods-SmartBike.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S2UTP3BQ3U;
@@ -470,6 +662,7 @@
 		};
 		01DF82861F75CB990041C16E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE15441E56568EDB96C5CC4F /* Pods-SmartBike.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = S2UTP3BQ3U;
@@ -484,6 +677,7 @@
 		};
 		01DF82881F75CB990041C16E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 231AE71C57EE81E3E9564800 /* Pods-SmartBikeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -499,6 +693,7 @@
 		};
 		01DF82891F75CB990041C16E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D46DEA871CECE99A89922723 /* Pods-SmartBikeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -514,6 +709,7 @@
 		};
 		01DF828B1F75CB990041C16E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 213E320CD691348800EAB75B /* Pods-SmartBikeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SmartBikeUITests/Info.plist;
@@ -528,6 +724,7 @@
 		};
 		01DF828C1F75CB990041C16E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 171BCC775A3777B946A83CA5 /* Pods-SmartBikeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SmartBikeUITests/Info.plist;

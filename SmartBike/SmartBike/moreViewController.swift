@@ -25,6 +25,15 @@ class MoreViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
+    @IBAction func changeCollisionState(_ sender: Any) {
+        if CollisionSwitch.isOn{
+            phoneNumber.isEnabled=true
+        }
+        else{
+            phoneNumber.isEnabled=false
+        }
+    }
+    @IBOutlet weak var CollisionSwitch: UISwitch!
     @IBOutlet var weight: UITextField!
     @IBOutlet var phoneNumber: UITextField!
     @IBOutlet var unit: UISegmentedControl!
