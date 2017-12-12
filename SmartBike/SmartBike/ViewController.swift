@@ -149,7 +149,12 @@ class ViewController: UIViewController, MFMessageComposeViewControllerDelegate, 
     }
     func stopTracking(){
         timer.invalidate()
-        
+        //calculate calories
+        //calories/hr = [V*W(.0053 + %G/100) + .0083(V^3)]*7.2
+        let weight = Double(defaults.string(forKey: "weight")!)!
+        let v = (2.4*((traveledDistance/elapsedTime).rounded()*10)/10)
+        let calories = (7.2*elapsedTime/(129600))*(v*weight*0.0053 + v*v*v)
+        defaults.set(calories, forKey: "calories")
         defaults.set((traveledDistance.rounded()*10)/10, forKey: "distance")
         defaults.set(timeLabel.text, forKey: "time")
         defaults.set(((traveledDistance/elapsedTime).rounded()*10)/10, forKey: "avgSpeed")

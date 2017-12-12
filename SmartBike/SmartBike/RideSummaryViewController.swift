@@ -52,7 +52,8 @@ class RideSummaryViewController: UIViewController {
             
             self.timeLabel.text = self.defaults.string(forKey: "time")
             self.altitudeLabel.text = self.defaults.string(forKey: "altitude")
-            self.caloriesLabel.text = self.calories
+            self.caloriesLabel.text = String(format: "%.2f Cal", Double(self.defaults.string(forKey: "calories")!)!)
+            
             self.distanceLabel.isHidden = false
             self.timeLabel.isHidden = false
             self.altitudeLabel.isHidden = false
